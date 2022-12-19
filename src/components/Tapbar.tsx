@@ -11,31 +11,15 @@ import ProfileScreen from "../screen/ProfileScreen";
 
 export default function Tapbar() {
   const Tab = createBottomTabNavigator();
-
   return (
     <>
           <Tab.Navigator
-            // screenOptions={{ headerShown: false }}
             initialRouteName="home"
-
           >
-            <Tab.Screen
-              name="effects"
-              component={HomeScreen}
-
-            />
-            <Tab.Screen
-              name="home"
-              component={HomeScreen}
-
-            />
-            <Tab.Screen
-              name="profile"
-              component={HomeScreen}
-
-            />
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Settings" component={ProfileScreen} />
+            <Tab.Screen name="Creation" component={CreationScreen} />
           </Tab.Navigator>
-      )}
     </>
   );
 }

@@ -9,20 +9,25 @@ import {
 } from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import A_SearchIcon from "../components/A_SearchIcon";
+import A_AddIcon from "../components/A_AddIcon";
+import A_ProfileIcon from "../components/A_ProfileIcon";
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/native-stack';
 
 const styles = StyleSheet.create({
-  image: {
+image: {
   width: 171,
   height: 171,
   },
-  title: {
+title: {
   fontWeight: '700',
   fontSize: '32',
   lineHeight: '32',
 },
-  icon: {
-  width: 26.7,
-  height: 34,
+icon: {
+  width: 100,
+  height: 100,
 },
 container: {
   width: 390,
@@ -58,6 +63,26 @@ function HomeScreen(props: { navigation: any }) {
    image: any;
  }
 
+ const HomeNavigator = createStackNavigator();
+
+ function Home(props: { route: any; navigation: any }) {
+   const { navigation, route } = props;
+
+   const routeName = getFocusedRouteNameFromRoute(route);
+
+   React.useEffect(() => {
+     if (routeName === "SItem") {
+       navigation.setOptions({
+         tabBarVisible: false,
+       });
+     } else {
+       navigation.setOptions({
+         tabBarVisible: true,
+       });
+     }
+   }, [navigation, route]);
+ }
+
   return (
     <View
        style={{
@@ -70,10 +95,7 @@ function HomeScreen(props: { navigation: any }) {
      <Text
      style={styles.title}>Лента</Text>
 
-     <Image
-     style={styles.icon}
-     source={require("../images/SearchIcon.png")}
-     />
+     <A_SearchIcon style={styles.icon}/>
      </View>
 
 
@@ -94,6 +116,25 @@ function HomeScreen(props: { navigation: any }) {
          </>
        )}
      />
+
+     <HomeNavigator.Navigator
+       screenOptions={{
+         gestureEnabled: true,
+         gestureDirection: "horizontal",
+         // headerShown: false,
+       }}
+     >
+       <HomeNavigator.Screen
+         name="Home"
+         component={HomeScreen}
+         options={{ headerShown: false }}
+       />
+       <HomeNavigator.Screen
+         name="SItem"
+         component={ItemScreen}
+         options={{ headerShown: false }}
+       />
+     </HomeNavigator.Navigator>
 
      </View>
   );

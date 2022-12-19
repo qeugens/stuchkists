@@ -7,6 +7,17 @@ import { Button } from 'react-native';
 import HomeScreen from "../screen/HomeScreen";
 import CreationScreen from "../screen/CreationScreen";
 import ProfileScreen from "../screen/ProfileScreen";
+import A_SearchIcon from "./A_SearchIcon";
+import A_AddIcon from "./A_AddIcon";
+import A_ProfileIcon from "./A_ProfileIcon";
+
+const styles = StyleSheet.create({
+  title: {
+  fontWeight: '700',
+  fontSize: '32',
+  lineHeight: '32',
+},
+});
 
 
 export default function Tapbar() {
@@ -16,9 +27,27 @@ export default function Tapbar() {
           <Tab.Navigator
             initialRouteName="home"
           >
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Settings" component={ProfileScreen} />
-            <Tab.Screen name="Creation" component={CreationScreen} />
+            <Tab.Screen name=" " component={HomeScreen}
+            options={{
+                tabBarIcon: () => (
+                  <A_SearchIcon iconName="Search"></A_SearchIcon>
+                ),
+              }}
+            />
+            <Tab.Screen name="  " component={CreationScreen}
+            options={{
+                tabBarIcon: () => (
+                  <A_AddIcon iconName="Add"></A_AddIcon>
+                ),
+              }}
+            />
+            <Tab.Screen name="   " component={ProfileScreen}
+            options={{
+                tabBarIcon: () => (
+                  <A_ProfileIcon iconName="Profile"></A_ProfileIcon>
+                ),
+              }}
+            />
           </Tab.Navigator>
     </>
   );

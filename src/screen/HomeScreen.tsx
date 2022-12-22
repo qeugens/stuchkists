@@ -17,8 +17,8 @@ import { createStackNavigator } from '@react-navigation/native-stack';
 
 const styles = StyleSheet.create({
 image: {
-  width: 100,
-  height: 100,
+  width: 358,
+  height: 358,
   borderRadius: 8,
   marginLeft: 16,
   marginRight: 16,
@@ -28,11 +28,19 @@ title: {
   fontSize: '32',
   lineHeight: '32',
 },
-text: {
+text_geotag: {
   fontWeight: '400',
   fontSize: '15',
   lineHeight: '20',
-  margin: 5,
+  marginTop: 5,
+  paddingLeft: 24,
+},
+text_date: {
+  fontWeight: '400',
+  fontSize: '15',
+  lineHeight: '20',
+  paddingLeft: 24,
+  marginBottom: 16,
 },
 text_container: {
   marginBottom: 20,
@@ -124,6 +132,8 @@ function HomeScreen(props: { navigation: any }) {
            style={styles.image}
            source={{ uri: "http://localhost:3000/" + item.image.url}}
            />
+           <Text style={styles.text_geotag}>{item.geotag}</Text>
+           <Text style={styles.text_date}>{item.date}</Text>
            </View>
          </View>
        </>

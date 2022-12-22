@@ -53,6 +53,30 @@ profile_container: {
   paddingLeft: 20,
   paddingRight: 20,
   marginTop: 16,
+},
+cover: {
+  width: 358,
+  height: 143,
+
+},
+collections_container: {
+  paddingLeft: 16,
+  paddingRight: 16,
+  marginTop: 16,
+},
+my_collections: {
+  fontWeight: '700',
+  fontSize: '22',
+  lineHeight: '28',
+  paddingLeft: 16,
+  marginTop: 24,
+},
+collections_title: {
+  fontWeight: '600',
+  fontSize: '20',
+  lineHeight: '25',
+  marginTop: 8,
+  marginBottom: 24,
 }
 });
 
@@ -122,7 +146,10 @@ function ProfileScreen(props: { navigation: any }) {
           )}
         />
 
+        <Text
+        style={styles.my_collections}>Мои коллекции</Text>
 
+        <View style={styles.collections_container}>
         <FlatList
           data={collections}
           keyExtractor={(item: Collection) => item.id}
@@ -130,13 +157,14 @@ function ProfileScreen(props: { navigation: any }) {
               <View
                key={item.id}>
                  <Image
-                 style={styles.avatar}
+                 style={styles.cover}
                  source={{ uri: "http://localhost:3000/" + item.cover.url}}
                  />
-                <Text>{item.title}</Text>
+                <Text style={styles.collections_title}>{item.title}</Text>
               </View>
           )}
         />
+        </View>
 
 
       </View>

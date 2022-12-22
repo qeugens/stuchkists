@@ -17,13 +17,26 @@ import { createStackNavigator } from '@react-navigation/native-stack';
 
 const styles = StyleSheet.create({
 image: {
-  width: 171,
-  height: 171,
+  width: 100,
+  height: 100,
+  borderRadius: 8,
+  marginLeft: 16,
+  marginRight: 16,
   },
 title: {
   fontWeight: '700',
   fontSize: '32',
   lineHeight: '32',
+},
+text: {
+  fontWeight: '400',
+  fontSize: '15',
+  lineHeight: '20',
+  margin: 5,
+},
+text_container: {
+  marginBottom: 20,
+  marginLeft: 16,
 },
 icon: {
   width: 100,
@@ -37,8 +50,8 @@ container: {
   justifyContent: "space-between",
   paddingLeft: 20,
   paddingRight: 20,
-
-}
+  marginTop: 16,
+},
 });
 
 function HomeScreen(props: { navigation: any }) {
@@ -62,26 +75,26 @@ function HomeScreen(props: { navigation: any }) {
    id: any;
    image: any;
  }
-
- const HomeNavigator = createStackNavigator();
-
- function Home(props: { route: any; navigation: any }) {
-   const { navigation, route } = props;
-
-   const routeName = getFocusedRouteNameFromRoute(route);
-
-   React.useEffect(() => {
-     if (routeName === "SItem") {
-       navigation.setOptions({
-         tabBarVisible: false,
-       });
-     } else {
-       navigation.setOptions({
-         tabBarVisible: true,
-       });
-     }
-   }, [navigation, route]);
- }
+ //
+ // const HomeNavigator = createStackNavigator();
+ //
+ // function Home(props: { route: any; navigation: any }) {
+ //   const { navigation, route } = props;
+ //
+ //   const routeName = getFocusedRouteNameFromRoute(route);
+ //
+ //   React.useEffect(() => {
+ //     if (routeName === "SItem") {
+ //       navigation.setOptions({
+ //         tabBarVisible: false,
+ //       });
+ //     } else {
+ //       navigation.setOptions({
+ //         tabBarVisible: true,
+ //       });
+ //     }
+ //   }, [navigation, route]);
+ // }
 
   return (
     <View
@@ -89,6 +102,7 @@ function HomeScreen(props: { navigation: any }) {
          // flex: 1,
          // justifyContent: "center",
          // alignItems: "center",
+         backgroundColor: 'white',
        }}
      >
      <View style={styles.container}>
@@ -98,43 +112,23 @@ function HomeScreen(props: { navigation: any }) {
      <A_SearchIcon style={styles.icon}/>
      </View>
 
-
      <FlatList
-       data={data}
-       keyExtractor={(item: Item) => item.id}
-       renderItem={({ item }) => (
-         <>
-           <View
-            key={item.id}>
-             <View>
-             <Image
-             style={styles.image}
-             source={{ uri: "http://localhost:3000/" + item.image.url}}
-             />
-             </View>
+     data={data}
+     keyExtractor={(item: Item) => item.id}
+     renderItem={({ item }) => (
+       <>
+         <View
+          key={item.id}>
+           <View>
+           <Image
+           style={styles.image}
+           source={{ uri: "http://localhost:3000/" + item.image.url}}
+           />
            </View>
-         </>
-       )}
-     />
-
-     <HomeNavigator.Navigator
-       screenOptions={{
-         gestureEnabled: true,
-         gestureDirection: "horizontal",
-         // headerShown: false,
-       }}
-     >
-       <HomeNavigator.Screen
-         name="Home"
-         component={HomeScreen}
-         options={{ headerShown: false }}
-       />
-       <HomeNavigator.Screen
-         name="SItem"
-         component={ItemScreen}
-         options={{ headerShown: false }}
-       />
-     </HomeNavigator.Navigator>
+         </View>
+       </>
+     )}
+   />
 
      </View>
   );

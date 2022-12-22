@@ -1,13 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  SafeAreaView,
+  Image,
+} from "react-native";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import A_NotificationIcon from "../components/A_NotificationIcon";
 import A_MenuIcon from "../components/A_MenuIcon";
 
 const styles = StyleSheet.create({
+avatar: {
+  width: 79,
+  height: 79,
+  borderRadius: '50%',
+},
 title: {
   fontWeight: '700',
   fontSize: '32',
   lineHeight: '32',
+},
+description: {
+  fontWeight: '400',
+  fontSize: '17',
+  lineHeight: '22',
+  width: 266,
+  paddingLeft: 16,
 },
 container: {
   width: 390,
@@ -15,30 +36,111 @@ container: {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
-  paddingLeft: 20,
-  paddingRight: 20,
+  paddingLeft: 16,
+  paddingRight: 16,
+  marginTop: 16,
 },
 iconContainer: {
   flexDirection: "row",
   justifyContent: "space-between",
   width: 67,
+},
+profile_container: {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: 'center',
+  paddingLeft: 20,
+  paddingRight: 20,
+  marginTop: 16,
 }
 });
 
-function ProfileScreen({}) {
+function ProfileScreen(props: { navigation: any }) {
+  const { navigation } = props;
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [testData, setTestData] = useState(null);
+  const [scode, setSCode] = React.useState("");
+  const [collections, setCollections] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/v1/users')
+      .then(({ data }) => {
+        //status, data: message, status, data:[{},]
+        // alert(data.data[0]?.username);
+        setData(data.data)
+      })
+      .catch((error) => console.error(error))
+
+      axios.get('http://localhost:3000/api/v1/collections')
+        .then(({ data }) => {
+          //status, data: message, status, data:[{},]
+          // alert(data.data[0]?.title);
+          setCollections(data.data)
+        })
+        .catch((error) => console.error(error))
+        .finally(() => setLoading(false));
+  }, []);
+
+  interface User {
+   id: any;
+   username: any;
+   description: any;
+   avatar: any;
+ }
+  interface Collection {
+   id: any;
+   title: any;
+   description: any;
+}
     return (
       <View>
-        <View style={styles.container}>
-          <Text
-          style={styles.title}>karinamulk</Text>
+        <FlatList
+          data={data}
+          keyExtractor={(item: User) => item.id}
+          renderItem={({ item }) => (
+            <>
+              <View
+               key={item.id}>
+               <View style={styles.container}>
+               <Text style={styles.title}>{item.username}</Text>
+                <View style={styles.iconContainer}>
+                  <A_NotificationIcon style={styles.icon}/>
+                  <A_MenuIcon style={styles.icon}/>
+                </View>
+                </View>
+                <View style={styles.profile_container}>
+                <Image
+                style={styles.avatar}
+                source={{ uri: "http://localhost:3000/" + item.avatar.url}}
+                />
+                <Text style={styles.description}>{item.description}</Text>
+                </View>
+              </View>
+            </>
+          )}
+        />
 
-          <View style={styles.iconContainer}>
-            <A_NotificationIcon style={styles.icon}/>
-            <A_MenuIcon style={styles.icon}/>
-          </View>
-        </View>
+
+        <FlatList
+          data={collections}
+          keyExtractor={(item: Collection) => item.id}
+          renderItem={({ item }) => (
+              <View
+               key={item.id}>
+                 <Image
+                 style={styles.avatar}
+                 source={{ uri: "http://localhost:3000/" + item.cover.url}}
+                 />
+                <Text>{item.title}</Text>
+              </View>
+          )}
+        />
+
 
       </View>
+
     );
 }
 

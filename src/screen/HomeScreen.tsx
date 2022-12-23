@@ -110,7 +110,6 @@ function HomeScreen(props: { navigation: any }) {
          // flex: 1,
          // justifyContent: "center",
          // alignItems: "center",
-         backgroundColor: 'white',
        }}
      >
      <View style={styles.container}>

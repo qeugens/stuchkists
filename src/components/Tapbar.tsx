@@ -3,13 +3,15 @@ import { StyleSheet, View, Text, FlatList, SafeAreaView, Image } from "react-nat
 import axios from "axios";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Button } from 'react-native';
-import HomeScreen from "../screen/HomeScreen";
 import CreationScreen from "../screen/CreationScreen";
 import ProfileScreen from "../screen/ProfileScreen";
 import A_SearchIcon from "./A_SearchIcon";
 import A_AddIcon from "./A_AddIcon";
 import A_ProfileIcon from "./A_ProfileIcon";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ItemScreen from '../screen/ItemScreen';
+import HomeScreen from '../screen/HomeScreen';
+
 
 const styles = StyleSheet.create({
   title: {
@@ -19,6 +21,23 @@ const styles = StyleSheet.create({
 },
 });
 
+const HomeNavigator = createNativeStackNavigator();
+
+function HomeNav() {
+  return (
+    <HomeNavigator.Navigator
+      screenOptions={{
+        gestureEnabled: true,
+        gestureDirection: "horizontal",
+        headerShown: true,
+      }}
+      initialRouteName="PostsList"
+    >
+      <HomeNavigator.Screen name="PostsList" component={HomeScreen} options={{headerShown: false}}/>
+      <HomeNavigator.Screen name="Штучкис" component={ItemScreen} />
+    </HomeNavigator.Navigator>
+  );
+}
 
 export default function Tapbar() {
   const Tab = createBottomTabNavigator();
@@ -26,8 +45,11 @@ export default function Tapbar() {
     <>
           <Tab.Navigator
             initialRouteName="home"
+            screenOptions={{
+            headerShown: false,
+            }}
           >
-            <Tab.Screen name=" " component={HomeScreen}
+            <Tab.Screen name=" " component={HomeNav}
             options={{
                 tabBarIcon: () => (
                   <A_SearchIcon iconName="Search"></A_SearchIcon>

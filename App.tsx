@@ -34,10 +34,14 @@ const styles = StyleSheet.create({
 export default function App() {
   const Tab = createBottomTabNavigator();
   return (
+    <NavigationContainer>
       <SafeAreaView style={styles.container}>
-        <NavigationContainer>
           <Tapbar></Tapbar>
-        </NavigationContainer>
       </SafeAreaView>
+    </NavigationContainer>
   );
 }
+
+// export default function HomeStack() {
+//   return <Navigation />
+// }

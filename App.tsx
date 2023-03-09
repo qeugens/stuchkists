@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -6,16 +6,14 @@ import {
   FlatList,
   SafeAreaView,
   Image,
-} from "react-native";
-import axios from "axios";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Button } from "react-native";
-import Tapbar from "./src/components/Tapbar";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "./src/screen/HomeScreen";
-import CreationScreen from "./src/screen/CreationScreen";
-import ProfileScreen from "./src/screen/ProfileScreen";
+} from 'react-native';
+import axios from 'axios';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Button } from 'react-native';
+import Navigation from './src/components/Navigation';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { AuthState } from './src/AuthState';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +21,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 32,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   image: {
     width: 100,
@@ -34,14 +32,12 @@ const styles = StyleSheet.create({
 export default function App() {
   const Tab = createBottomTabNavigator();
   return (
-    <NavigationContainer>
-      <SafeAreaView style={styles.container}>
-          <Tapbar></Tapbar>
-      </SafeAreaView>
-    </NavigationContainer>
+    <AuthState>
+      <NavigationContainer>
+        <SafeAreaView style={styles.container}>
+          <Navigation></Navigation>
+        </SafeAreaView>
+      </NavigationContainer>
+    </AuthState>
   );
 }
-
-// export default function HomeStack() {
-//   return <Navigation />
-// }

@@ -7,43 +7,43 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-} from "react-native";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import A_SearchIcon from "../components/A_SearchIcon";
-import A_AddIcon from "../components/A_AddIcon";
-import A_ProfileIcon from "../components/A_ProfileIcon";
+} from 'react-native';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import A_SearchIcon from '../components/A_SearchIcon';
+import A_AddIcon from '../components/A_AddIcon';
+import A_ProfileIcon from '../components/A_ProfileIcon';
 import 'react-native-gesture-handler';
 // import { createStackNavigator } from '@react-navigation/native-stack';
-import styled from 'styled-components/native'
+import styled from 'styled-components/native';
 // import A_Image from "../components/A_Image";
-import Title1 from "../components/Title1";
+import Title1 from '../components/Title1';
 
 const A_Image = styled.Image`
-    width: 171;
-    height: 171;
-    borderRadius: 8;
-    margin-top: 8;
-    margin-bottom: 8;
-    margin-right: 16;
+  width: 171;
+  height: 171;
+  borderradius: 8;
+  margin-top: 8;
+  margin-bottom: 8;
+  margin-right: 16;
 `;
 const FlatListWrapper = styled.FlatList`
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 `;
 const FeedWrapper = styled.View`
-    margin-left: 16;
-    margin-right: 16;
+  margin-left: 16;
+  margin-right: 16;
 `;
 const TitleWrapper = styled.View`
-    width: 350;
-    height: 42;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 4;
-    margin-right: 4;
-    margin-top: 16;
+  width: 350;
+  height: 42;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 4;
+  margin-right: 4;
+  margin-top: 16;
 `;
 // const A_SearchIcon = styled()`
 //     width: 100,
@@ -76,27 +76,28 @@ const styles = StyleSheet.create({
   container: {
     width: 390,
     height: 42,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginLeft: 4,
     marginRight: 4,
     marginTop: 16,
   },
 });
 
-function HomeScreen(props: { navigation: any }) {
+function FeedScreen(props: { navigation: any }) {
   const { navigation } = props;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [testData, setTestData] = useState(null);
-  const [scode, setSCode] = React.useState("");
+  const [scode, setSCode] = React.useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/items')
+    axios
+      .get('http://localhost:3000/api/v1/items')
       .then(({ data }) => {
-        console.log(JSON.stringify(data))
-        setData(data)
+        console.log(JSON.stringify(data));
+        setData(data);
       })
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
@@ -121,12 +122,14 @@ function HomeScreen(props: { navigation: any }) {
           keyExtractor={(item: Item) => item.id}
           renderItem={({ item }) => (
             <>
-                  <TouchableOpacity onPress={() => navigation.push('Штучкис', { item: item })}>
-                    <A_Image
-                    key={item.id}
-                    source={{ uri: "http://localhost:3000/" + item.image.url }}
-                    />
-                  </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.push('Штучкис', { item: item })}
+              >
+                <A_Image
+                  key={item.id}
+                  source={{ uri: 'http://localhost:3000/' + item.image.url }}
+                />
+              </TouchableOpacity>
             </>
           )}
         />
@@ -135,4 +138,4 @@ function HomeScreen(props: { navigation: any }) {
   );
 }
 
-export default HomeScreen;
+export default FeedScreen;

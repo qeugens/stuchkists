@@ -8,14 +8,13 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-// import { apiUrl } from '../const'
 import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 const SignUpScreen = ({ navigation, route }) => {
-  const [username, onChangeUsername] = React.useState('test10');
-  const [password1, onChangePassword1] = React.useState('password2');
-  const [password2, onChangePassword2] = React.useState('password2');
-  const [email, onChangeEmail] = React.useState('test10@mail.ru');
+  const [username, onChangeUsername] = React.useState('ntizish');
+  const [password1, onChangePassword1] = React.useState('fortnitelover');
+  const [password2, onChangePassword2] = React.useState('fortnitelover');
+  const [email, onChangeEmail] = React.useState('ntizish@hse.ru');
 
   const emptyUser = {
     id: 0,

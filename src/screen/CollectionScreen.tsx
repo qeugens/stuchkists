@@ -11,29 +11,29 @@ import {
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components/native';
-import { Header, Caption, Body } from '../components/Quarks/Q_FontFile';
 
 export const ItemScreen = ({ route, navigation }) => {
   // const { route, navigation } = props;
   const params = route.params || {};
-  // const { item = {} } = params;
+  const { item = {} } = params;
   const { id } = params;
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [testData, setTestData] = useState(null);
   const [scode, setSCode] = React.useState('');
   // const { id, geotag, date } = route.params;
   const A_Image = styled.Image`
-    width: 374;
-    height: 374;
+    width: 185;
+    height: 185;
     border-radius: 8;
-    margintop: '16';
-    margin: auto;
+    margin-top: 8;
+    margin-bottom: 4;
+    margin-right: 4;
   `;
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/v1/items/${id}`)
+      .get(`http://localhost:3000/api/v1/collections/`)
       .then(({ data }) => {
         // alert(JSON.stringify(data));
         setData(data);
@@ -50,42 +50,12 @@ export const ItemScreen = ({ route, navigation }) => {
 
   return (
     <View>
-      {isLoading ? (
-        <Text>Wait</Text>
-      ) : (
-        <>
-          <A_Image
-            key={data?.id}
-            source={{ uri: 'http://localhost:3000/' + data?.image?.url }}
-          />
-          <Caption>Дата находки</Caption>
-          <Header
-            style={{
-              // color: styles.mainColors.darkBlue,
-              fontFamily: 'IT',
-            }}
-          >
-            {data?.date}
-          </Header>
-          <Caption>Место находки</Caption>
-          <Header
-            style={{
-              // color: styles.mainColors.darkBlue,
-              fontFamily: 'IT',
-            }}
-          >
-            {data?.geotag}
-          </Header>
-          <Body
-            style={{
-              // color: styles.mainColors.darkBlue,
-              fontFamily: 'IT',
-            }}
-          >
-            {data?.note}
-          </Body>
-        </>
-      )}
+      <A_Image
+        key={data?.id}
+        source={{ uri: 'http://localhost:3000/' + data?.image?.url }}
+      />
+      <Text>{item.title}</Text>
+      <Text>{item.description}</Text>
 
       {/* <M_FeedImages
      data={data}

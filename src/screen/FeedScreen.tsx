@@ -10,37 +10,36 @@ import {
 } from 'react-native';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import A_SearchIcon from '../components/A_SearchIcon';
-import A_AddIcon from '../components/A_AddIcon';
-import A_ProfileIcon from '../components/A_ProfileIcon';
 import 'react-native-gesture-handler';
-// import { createStackNavigator } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
-// import A_Image from "../components/A_Image";
-import Title1 from '../components/Title1';
+import { Header } from '../components/Quarks/Q_FontFile';
 
-const A_Image = styled.Image`
-  width: 171;
-  height: 171;
-  borderradius: 8;
-  margin-top: 8;
-  margin-bottom: 8;
-  margin-right: 16;
+const white = 'hsl(203, 24%, 99%)';
+const beige = 'hsl(60, 4%, 96%)';
+const lightBlue = 'hsl(214, 12%, 73%)';
+const green = 'hsl(150, 7%, 63%)';
+const darkBlue = 'hsl(204, 9%, 37%)';
+const red = 'hsl(360, 62%, 65%)';
+
+const Q_Image = styled.Image`
+  width: 185;
+  height: 185;
+  border-radius: 8;
+  // margin-top: 8;
+  margin-bottom: 4;
+  margin-right: 4;
 `;
 const FlatListWrapper = styled.FlatList`
   display: flex;
   flex-wrap: wrap;
 `;
 const FeedWrapper = styled.View`
-  margin-left: 16;
-  margin-right: 16;
+  margin-left: 8;
+  margin-right: 8;
 `;
 const TitleWrapper = styled.View`
   width: 350;
   height: 42;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   margin-left: 4;
   margin-right: 4;
   margin-top: 16;
@@ -85,8 +84,8 @@ const styles = StyleSheet.create({
   },
 });
 
-function FeedScreen(props: { navigation: any }) {
-  const { navigation } = props;
+const FeedScreen = ({ navigation }) => {
+  // const { navigation } = props;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [testData, setTestData] = useState(null);
@@ -96,7 +95,7 @@ function FeedScreen(props: { navigation: any }) {
     axios
       .get('http://localhost:3000/api/v1/items')
       .then(({ data }) => {
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
         setData(data);
       })
       .catch((error) => console.error(error))
@@ -111,9 +110,16 @@ function FeedScreen(props: { navigation: any }) {
   return (
     <FeedWrapper>
       <TitleWrapper>
-        <Title1>Лента</Title1>
-
-        <A_SearchIcon style={styles.icon} />
+        <Text
+          style={{
+            color: darkBlue,
+            fontFamily: 'IT',
+            fontSize: 24,
+            lineHeight: 24,
+          }}
+        >
+          Штучки для тебя здесь
+        </Text>
       </TitleWrapper>
       <View>
         <FlatListWrapper
@@ -123,9 +129,9 @@ function FeedScreen(props: { navigation: any }) {
           renderItem={({ item }) => (
             <>
               <TouchableOpacity
-                onPress={() => navigation.push('Штучкис', { item: item })}
+                onPress={() => navigation.navigate('Штучкис', { id: item.id })}
               >
-                <A_Image
+                <Q_Image
                   key={item.id}
                   source={{ uri: 'http://localhost:3000/' + item.image.url }}
                 />
@@ -136,6 +142,6 @@ function FeedScreen(props: { navigation: any }) {
       </View>
     </FeedWrapper>
   );
-}
+};
 
 export default FeedScreen;

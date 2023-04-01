@@ -7,15 +7,77 @@ import {
   TextInput,
   Button,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import axios from 'axios';
-
 import { AuthContext } from '../AuthContext';
+import styled from 'styled-components/native';
+
+const white = 'hsl(203, 24%, 99%)';
+const beige = 'hsl(60, 4%, 96%)';
+const lightBlue = 'hsl(214, 12%, 73%)';
+const green = 'hsl(150, 7%, 63%)';
+const darkBlue = 'hsl(204, 9%, 37%)';
+const red = 'hsl(360, 62%, 65%)';
+
+const A_Input = styled.TextInput`
+  width: 374;
+  height: 56;
+  border-radius: 12;
+  color: 'hsl(204, 9%, 37%)';
+  opacity: 0.8;
+  background-color: 'hsl(203, 24%, 99%);
+`;
+const A_Textarea = styled.TextInput`
+  width: 374;
+  height: 96;
+  border-radius: 12;
+  color: 'hsl(150, 7%, 63%)';
+  opacity: 0.8;
+  background-color: 'hsl(203, 24%, 99%);
+`;
+const M_InputDescriptionTitle = styled.View`
+  display: flex;
+  flex-direction: column;
+  height: 96;
+  justify-content: space-between;
+`;
+const M_TextareaDescriptionTitle = styled.View`
+  display: flex;
+  flex-direction: column;
+  height: 136;
+  justify-content: space-between;
+  margin-top: 16px;
+`;
+const O_CreateCollectionForm = styled.View`
+  display: flex;
+  flex-direction: column;
+  height: 256;
+  justify-content: space-between;
+  margin: 16px auto;
+`;
+const A_Button = styled.TouchableOpacity`
+  display: flex;
+  text-align: center;
+  width: 374;
+  height: 72;
+  background-color: 'hsl(203, 24%, 99%)';
+  border-radius: 12;
+  padding-top: 24px;
+  // margin-top: 377px;
+`;
+const O_CreationScreen = styled.View`
+  display: flex;
+  flex-direction: column;
+  height: 701;
+  justify-content: space-between;
+  margin: 0 auto;
+`;
 
 const CreateCollectionScreen = ({ navigation, route }) => {
-  const [title, onChangeTitle] = React.useState('Упаковка');
+  const [title, onChangeTitle] = React.useState('Камни');
   const [description, onChangeDescription] = React.useState(
-    'фоткаю прикольные пачки чипсов и дошиков, а потом ем'
+    'Собираю камни из разных стран, которые нельзя вывозить'
   );
   // const [userId, setUserId] = React.useState(0);
   // const [userName, setUserName] = React.useState('');
@@ -39,7 +101,7 @@ const CreateCollectionScreen = ({ navigation, route }) => {
         // setToken(response.headers.authorization);
       })
       .then(() => {
-        topNavigation.navigate('');
+        topNavigation.navigate('Я');
       });
   };
 
@@ -57,45 +119,76 @@ const CreateCollectionScreen = ({ navigation, route }) => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeTitle}
-        value={title}
-        placeholder="Enter login"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeDescription}
-        value={description}
-        placeholder="Enter password"
-      />
-      <Button
-        onPress={createColletion}
-        title={'Создать коллекцию'}
-        color="#841584"
-        accessibilityLabel="Learn more"
-      />
-      {/* <View style={styles.text}>
-        <Text> {token === '' ? '' : 'Token: ' + token} </Text>
-        <Text> {userId === 0 ? '' : 'User id: ' + userId} </Text>
-        <Text> {userName === '' ? '' : 'User name: ' + userName} </Text>
-      </View> */}
-    </SafeAreaView>
+    <O_CreationScreen>
+      <O_CreateCollectionForm>
+        <M_InputDescriptionTitle>
+          <Text
+            style={{
+              color: darkBlue,
+              fontFamily: 'IT',
+              fontSize: 24,
+              paddingLeft: 16,
+            }}
+          >
+            Название коллекции
+          </Text>
+          <A_Input
+            onChangeText={onChangeTitle}
+            value={title}
+            placeholder="Смешные ёлочки"
+            style={{
+              color: green,
+              fontFamily: 'IT',
+              fontSize: 24,
+              padding: 16,
+              opacity: 0.8,
+            }}
+          />
+        </M_InputDescriptionTitle>
+        <M_TextareaDescriptionTitle>
+          <Text
+            style={{
+              color: darkBlue,
+              fontFamily: 'IT',
+              fontSize: 24,
+              paddingLeft: 16,
+              opacity: 0.8,
+            }}
+          >
+            Описание
+          </Text>
+          <A_Textarea
+            onChangeText={onChangeDescription}
+            multiline={true}
+            numberOfLines={4}
+            value={description}
+            placeholder="м?"
+            style={{
+              color: green,
+              fontFamily: 'IT',
+              fontSize: 16,
+              padding: 16,
+            }}
+          />
+        </M_TextareaDescriptionTitle>
+      </O_CreateCollectionForm>
+      <A_Button>
+        <Text
+          onPress={createColletion}
+          title={'Создать коллекцию'}
+          style={{
+            color: darkBlue,
+            fontFamily: 'IT',
+            fontSize: 24,
+            width: 374,
+            textAlign: 'center',
+          }}
+        >
+          Создать коллекцию
+        </Text>
+      </A_Button>
+    </O_CreationScreen>
   );
 };
 
 export default CreateCollectionScreen;
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-  },
-  text: {
-    margin: 12,
-  },
-});

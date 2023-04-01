@@ -9,12 +9,43 @@ import {
   StyleSheet,
 } from 'react-native';
 import { AsyncStorage } from '@react-native-async-storage/async-storage';
+import styled from 'styled-components/native';
+
+const white = 'hsl(203, 24%, 99%)';
+const beige = 'hsl(60, 4%, 96%)';
+const lightBlue = 'hsl(214, 12%, 73%)';
+const green = 'hsl(150, 7%, 63%)';
+const darkBlue = 'hsl(204, 9%, 37%)';
+const red = 'hsl(360, 62%, 65%)';
+
+const A_Input = styled.TextInput`
+  width: 374;
+  height: 56;
+  border-radius: 12;
+  color: 'hsl(204, 9%, 37%)';
+  opacity: 0.8;
+  background-color: 'hsl(203, 24%, 99%);
+  margin-top: 10;
+`;
+const A_Button = styled.TouchableOpacity`
+  display: flex;
+  text-align: center;
+  width: 374;
+  height: 72;
+  background-color: 'hsl(203, 24%, 99%)';
+  border-radius: 12;
+  padding-top: 24px;
+  margin-top: 100px;
+`;
+const O_SignUpForm = styled.SafeAreaView`
+  margin: 64px auto;
+`;
 
 const SignUpScreen = ({ navigation, route }) => {
-  const [username, onChangeUsername] = React.useState('ntizish');
-  const [password1, onChangePassword1] = React.useState('fortnitelover');
-  const [password2, onChangePassword2] = React.useState('fortnitelover');
-  const [email, onChangeEmail] = React.useState('ntizish@hse.ru');
+  const [username, onChangeUsername] = React.useState('qeugens');
+  const [password1, onChangePassword1] = React.useState('password');
+  const [password2, onChangePassword2] = React.useState('password');
+  const [email, onChangeEmail] = React.useState('qeugens@hse.ru');
 
   const emptyUser = {
     id: 0,
@@ -81,65 +112,108 @@ const SignUpScreen = ({ navigation, route }) => {
   };
 
   return (
-    <SafeAreaView>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeUsername}
-        value={username}
-        placeholder="Enter login"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangePassword1}
-        value={password1}
-        placeholder="Enter password"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangePassword2}
-        value={password2}
-        placeholder="Enter password again"
-      />
-      <TextInput
-        style={styles.input}
+    <O_SignUpForm>
+      <Text
+        style={{
+          color: darkBlue,
+          fontFamily: 'IT',
+          fontSize: 24,
+          lineHeight: 24,
+          textAlign: 'center',
+          paddingLeft: 16,
+          marginTop: 24,
+        }}
+      >
+        Хэй! Давай сделаем тебе профиль
+      </Text>
+      <A_Input
+        style={{
+          color: green,
+          fontFamily: 'IT',
+          fontSize: 16,
+          paddingLeft: 16,
+          marginTop: 16,
+          opacity: 0.8,
+        }}
         onChangeText={onChangeEmail}
         value={email}
-        placeholder="Enter email"
+        placeholder="Твоя почта"
       />
-      <Button
-        onPress={signUp}
-        title="Sign up"
-        color="#841584"
-        accessibilityLabel="Learn more"
+      <A_Input
+        style={{
+          color: green,
+          fontFamily: 'IT',
+          fontSize: 16,
+          paddingLeft: 16,
+          marginTop: 16,
+          opacity: 0.8,
+        }}
+        onChangeText={onChangePassword1}
+        value={password1}
+        placeholder="Твой пароль"
+        secureTextEntry={true}
       />
-      <View style={styles.text}>
-        <Text> {user.jti === '' ? '' : 'Token: ' + user.jti} </Text>
-        <Text> {user.id === 0 ? '' : 'User id: ' + user.id} </Text>
-        <Text>
-          {' '}
-          {user.username === '' ? '' : 'User name: ' + user.username}{' '}
+      <A_Input
+        style={{
+          color: green,
+          fontFamily: 'IT',
+          fontSize: 16,
+          paddingLeft: 16,
+          marginTop: 16,
+          opacity: 0.8,
+        }}
+        onChangeText={onChangePassword2}
+        value={password2}
+        placeholder="И ещё разок"
+        secureTextEntry={true}
+      />
+      <A_Input
+        style={{
+          color: green,
+          fontFamily: 'IT',
+          fontSize: 16,
+          paddingLeft: 16,
+          marginTop: 16,
+          opacity: 0.8,
+        }}
+        onChangeText={onChangeUsername}
+        value={username}
+        placeholder="Твой никнейм"
+      />
+      <A_Button>
+        <Text
+          onPress={signUp}
+          title={'Зарегистрироваться'}
+          style={{
+            color: darkBlue,
+            fontFamily: 'IT',
+            fontSize: 24,
+            width: 374,
+            color: 'hsl(204, 9%, 37%)',
+            textAlign: 'center',
+          }}
+        >
+          Зарегистрироваться
         </Text>
-        <Text>
-          {' '}
-          {user.password === '' ? '' : 'User password: ' + user.password}{' '}
-        </Text>
-        <Text> {user.email === '' ? '' : 'User email: ' + user.email} </Text>
-      </View>
-    </SafeAreaView>
+      </A_Button>
+      <Text
+        onPress={() => navigation.navigate('LogIn')}
+        title={'Войти'}
+        style={{
+          color: darkBlue,
+          fontFamily: 'IT',
+          fontSize: 16,
+          textTransform: 'uppercase',
+          width: 374,
+          color: 'hsl(204, 9%, 37%)',
+          textAlign: 'center',
+          marginTop: 24,
+        }}
+      >
+        Войти
+      </Text>
+    </O_SignUpForm>
   );
 };
 
 export default SignUpScreen;
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-  },
-  text: {
-    margin: 12,
-  },
-});

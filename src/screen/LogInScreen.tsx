@@ -9,13 +9,43 @@ import {
   StyleSheet,
 } from 'react-native';
 import axios from 'axios';
-
 import { AuthContext } from '../AuthContext';
+import styled from 'styled-components/native';
+
+const A_Input = styled.TextInput`
+  width: 374;
+  height: 56;
+  border-radius: 12;
+  color: 'hsl(204, 9%, 37%)';
+  opacity: 0.8;
+  background-color: 'hsl(203, 24%, 99%);
+  margin-top: 10;
+`;
+const A_Button = styled.TouchableOpacity`
+  display: flex;
+  text-align: center;
+  width: 374;
+  height: 72;
+  background-color: 'hsl(203, 24%, 99%)';
+  border-radius: 12;
+  padding-top: 24px;
+  margin-top: 100px;
+`;
+const O_LogInForm = styled.SafeAreaView`
+  margin: 64px auto;
+`;
+
+const white = 'hsl(203, 24%, 99%)';
+const beige = 'hsl(60, 4%, 96%)';
+const lightBlue = 'hsl(214, 12%, 73%)';
+const green = 'hsl(150, 7%, 63%)';
+const darkBlue = 'hsl(204, 9%, 37%)';
+const red = 'hsl(360, 62%, 65%)';
 
 const LogInScreen = ({ navigation, route, topNavigation }) => {
   // const { topNavigation } = restprops;
 
-  alert(JSON.stringify(topNavigation));
+  // alert(JSON.stringify(topNavigation));
   const [email, onChangeEmail] = React.useState('qeugens@hse.ru');
   const [password, onChangePassword] = React.useState('password');
   const [userId, setUserId] = React.useState(0);
@@ -137,51 +167,82 @@ const LogInScreen = ({ navigation, route, topNavigation }) => {
   }
 
   return (
-    <SafeAreaView>
-      <TextInput
-        style={styles.input}
+    <O_LogInForm>
+      <Text
+        style={{
+          color: darkBlue,
+          fontFamily: 'IT',
+          fontSize: 24,
+          lineHeight: 24,
+          textAlign: 'center',
+          paddingLeft: 16,
+          marginTop: 24,
+          width: 350,
+        }}
+      >
+        Ага, мы уже знакомы! Напомни свои данные
+      </Text>
+      <A_Input
+        style={{
+          color: green,
+          fontFamily: 'IT',
+          fontSize: 16,
+          paddingLeft: 16,
+          marginTop: 16,
+          opacity: 0.8,
+        }}
         onChangeText={onChangeEmail}
         value={email}
         placeholder="Enter login"
       />
-      <TextInput
-        style={styles.input}
+      <A_Input
+        style={{
+          color: green,
+          fontFamily: 'IT',
+          fontSize: 16,
+          paddingLeft: 16,
+          marginTop: 16,
+          opacity: 0.8,
+        }}
         onChangeText={onChangePassword}
         value={password}
         placeholder="Enter password"
+        secureTextEntry={true}
       />
-      <Button
-        onPress={token === '' ? logIn : logOut}
-        title={token === '' ? 'Sign In' : 'Sign out'}
-        color="#841584"
-        accessibilityLabel="Learn more"
-      />
-      {/* <Button
-        onPress={() => topNavigation.navigate('ФИД')}
-        title={'go somewhere'}
-        color="#841584"
-        accessibilityLabel="Learn more"
-      /> */}
-      <View style={styles.text}>
-        <Text> {token === '' ? '' : 'Token: ' + token} </Text>
-        <Text> {userId === 0 ? '' : 'User id: ' + userId} </Text>
-        <Text> {userName === '' ? '' : 'User name: ' + userName} </Text>
-      </View>
-    </SafeAreaView>
+      <A_Button>
+        <Text
+          onPress={logIn}
+          title={'Войти'}
+          style={{
+            color: darkBlue,
+            fontFamily: 'IT',
+            fontSize: 24,
+            width: 374,
+            color: 'hsl(204, 9%, 37%)',
+            textAlign: 'center',
+          }}
+        >
+          Войти
+        </Text>
+      </A_Button>
+      <Text
+        onPress={() => navigation.navigate('SignUp')}
+        title={'Зарегистрироваться'}
+        style={{
+          color: darkBlue,
+          fontFamily: 'IT',
+          fontSize: 16,
+          textTransform: 'uppercase',
+          width: 374,
+          color: 'hsl(204, 9%, 37%)',
+          textAlign: 'center',
+          marginTop: 24,
+        }}
+      >
+        Зарегистрироваться
+      </Text>
+    </O_LogInForm>
   );
 };
 
 export default LogInScreen;
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-  },
-  text: {
-    margin: 12,
-  },
-});

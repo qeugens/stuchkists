@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import axios from 'axios';
-import { AuthContext } from '../AuthContext';
+import { AuthContext } from '../../AuthContext';
 import styled from 'styled-components/native';
 
 const white = 'hsl(203, 24%, 99%)';

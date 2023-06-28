@@ -9,18 +9,18 @@ import {
   Button,
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import CreationScreen from '../screen/CreationScreen';
-import ProfileScreen from '../screen/ProfileScreen';
+import CreationItemScreen from '../screen/CreationItemScreen';
+import ProfileScreen from '../screen/Profile/ProfileScreen';
 import Q_Eyes from './Quarks/Q_Eyes';
 import Q_Plus from './Quarks/Q_Plus';
 import Q_Profile from './Quarks/Q_Profile';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ItemScreen from '../screen/ItemScreen';
-import FeedScreen from '../screen/FeedScreen';
-import HomeScreen from '../screen/HomeScreen';
-import LogInScreen from '../screen/LogInScreen';
-import SignUpScreen from '../screen/SignUpScreen';
-import CreateCollectionScreen from '../screen/CreateCollectionScreen';
+import FeedScreen from '../screen/Feed/FeedScreen';
+import HomeScreen from '../screen/Authorization/HomeScreen';
+import LogInScreen from '../screen/Authorization/LogInScreen';
+import SignUpScreen from '../screen/Authorization/SignUpScreen';
+import CreateCollectionScreen from '../screen/Profile/CreateCollectionScreen';
 import CollectionScreen from '../screen/CollectionScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { useSelector } from 'react-redux';
@@ -140,7 +140,7 @@ export default function Tapbar({}) {
             />
             <Tab.Screen
               name="Создание штучкиса"
-              component={CreationScreen}
+              component={CreationItemScreen}
               options={{
                 tabBarIcon: () => <Q_Plus iconName="Q_Plus"></Q_Plus>,
                 headerShown: true,
@@ -192,7 +192,7 @@ export default function Tapbar({}) {
                     style={{
                       marginLeft: 8,
                     }}
-                    onPress={() => navigation.goBack()}
+                    onPress={() => navigation.navigate('Я')}
                   >
                     <Q_HeaderBack iconName="Q_HeaderBack"></Q_HeaderBack>
                   </TouchableOpacity>
@@ -217,7 +217,7 @@ export default function Tapbar({}) {
                     style={{
                       marginLeft: 8,
                     }}
-                    onPress={() => navigation.goBack()}
+                    onPress={() => navigation.navigate('Я')}
                   >
                     <Q_HeaderBack iconName="Q_HeaderBack"></Q_HeaderBack>
                   </TouchableOpacity>
@@ -229,11 +229,23 @@ export default function Tapbar({}) {
               component={ItemScreen}
               options={{
                 headerShown: true,
+                headerStyle: {
+                  backgroundColor: beige,
+                },
+                headerTitleStyle: {
+                  color: darkBlue,
+                  fontFamily: 'IT',
+                  fontSize: 16,
+                },
                 headerLeft: () => (
-                  <Q_HeaderBack
-                    iconName="Q_Profile"
-                    onPress={() => alert('This is a button!')}
-                  />
+                  <TouchableOpacity
+                    style={{
+                      marginLeft: 8,
+                    }}
+                    onPress={() => navigation.goBack()}
+                  >
+                    <Q_HeaderBack iconName="Q_HeaderBack"></Q_HeaderBack>
+                  </TouchableOpacity>
                 ),
               }}
             />

@@ -12,6 +12,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components/native';
 import { Header, Caption, Body } from '../components/Quarks/Q_FontFile';
+import A_LikeButton from '../components/Atoms/A_LikeButton';
+
+const white = 'hsl(203, 24%, 99%)';
+const beige = 'hsl(60, 4%, 96%)';
+const lightBlue = 'hsl(214, 12%, 73%)';
+const green = 'hsl(150, 7%, 63%)';
+const darkBlue = 'hsl(204, 9%, 37%)';
+const red = 'hsl(360, 62%, 65%)';
 
 export const ItemScreen = ({ route, navigation }) => {
   // const { route, navigation } = props;
@@ -22,13 +30,53 @@ export const ItemScreen = ({ route, navigation }) => {
   const [data, setData] = useState({});
   const [testData, setTestData] = useState(null);
   const [scode, setSCode] = React.useState('');
+  const [liked, setLiked] = useState(false);
+  // const { getItem } = useLocalStorage();
   // const { id, geotag, date } = route.params;
+
+  // const like = (e) => {
+  //   e.preventDefault();
+  //   axios.post(
+  //     `http://localhost:3000/api/v1/items/${item.id}/likes`,
+  //     { like: {} },
+  //     {
+  //       headers: {
+  //         Authorization: `${getItem('token')}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //     }
+  //   );
+  // };
+
+  // const unlike = (e) => {
+  //   e.preventDefault();
+  //   axios.delete(
+  //     `http://localhost:3000/api/v1/items/${item.id}/likes/${
+  //       item?.likes?.filter((item) => item?.user_id === userId)?.[0]?.id
+  //     }`,
+  //     {
+  //       headers: {
+  //         Authorization: `${getItem('token')}`,
+  //       },
+  //     }
+  //   );
+  // };
+  // useEffect(() => {
+  //   const s = Boolean(
+  //     item?.likes?.filter((item) => item?.user_id === userId).length
+  //   );
+  //   setLiked(s);
+  // }, [item]);
+
   const A_Image = styled.Image`
     width: 374;
     height: 374;
     border-radius: 8;
     margintop: '16';
     margin: auto;
+  `;
+  const A_LikeButton = styled.Text`
+    position: relative;
   `;
 
   useEffect(() => {
@@ -58,34 +106,64 @@ export const ItemScreen = ({ route, navigation }) => {
             key={data?.id}
             source={{ uri: 'http://localhost:3000/' + data?.image?.url }}
           />
-          <Caption>Дата находки</Caption>
-          <Header
+          <Text
             style={{
-              // color: styles.mainColors.darkBlue,
+              color: green,
               fontFamily: 'IT',
+              fontSize: 12,
+              lineHeight: 16,
+              width: 274,
+            }}
+          >
+            Дата находки
+          </Text>
+          <Text
+            style={{
+              color: green,
+              fontFamily: 'IT',
+              fontSize: 24,
+              lineHeight: 24,
+              width: 274,
             }}
           >
             {data?.date}
-          </Header>
-          <Caption>Место находки</Caption>
-          <Header
+          </Text>
+          <Text
             style={{
-              // color: styles.mainColors.darkBlue,
+              color: green,
               fontFamily: 'IT',
+              fontSize: 12,
+              lineHeight: 12,
+              width: 274,
+            }}
+          >
+            Место находки
+          </Text>
+          <Text
+            style={{
+              color: green,
+              fontFamily: 'IT',
+              fontSize: 24,
+              lineHeight: 24,
+              width: 274,
             }}
           >
             {data?.geotag}
-          </Header>
-          <Body
+          </Text>
+          <Text
             style={{
-              // color: styles.mainColors.darkBlue,
+              color: green,
               fontFamily: 'IT',
+              fontSize: 16,
+              lineHeight: 16,
+              width: 274,
             }}
           >
             {data?.note}
-          </Body>
+          </Text>
         </>
       )}
+      <A_LikeButton />
 
       {/* <M_FeedImages
      data={data}

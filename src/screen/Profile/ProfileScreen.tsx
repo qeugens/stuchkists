@@ -11,11 +11,11 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import axios from 'axios';
-import { AuthContext } from '../AuthContext';
+import { AuthContext } from '../../AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { Title, Body } from '../components/Quarks/Q_FontFile';
-import Q_HeaderBack from '../components/Quarks/Q_HeaderBack';
-import Q_ButtonEllipse from '../components/Quarks/Q_ButtonEllipse';
+import Q_HeaderBack from '../../components/Quarks/Q_HeaderBack';
+import Q_ButtonEllipse from '../../components/Quarks/Q_ButtonEllipse';
 import styled from 'styled-components/native';
 
 const white = 'hsl(203, 24%, 99%)';
@@ -87,9 +87,10 @@ const O_UserBlock = styled.View`
   align-items: center;
 `;
 const A_CollectionCard = styled.Text`
-  width: 374;
-  height: 50;
+  width: 374px;
+  height: 152px;
   border-radius: 12px;
+  background-image: require('../../../assets/images/A_CollectionCard1.png');
 `;
 const M_CollectionList = styled.View`
   width: 374;
@@ -205,7 +206,7 @@ const ProfileScreen = ({ navigation, route }) => {
           <Text style={styles.description}>{data?.description}</Text>
         </View> */}
         <M_ProfileInfo>
-          <Q_Image source={require('../images/Q_UserImage.png')} />
+          <Q_Image source={require('../../images/Q_UserImage.png')} />
           <A_ProfileBody>
             <Text
               style={{
@@ -297,9 +298,9 @@ const ProfileScreen = ({ navigation, route }) => {
                 source={{ uri: 'http://localhost:3000/' + item.cover.url }}
               /> */}
               <A_CollectionCard
-                source={require('../images/A_CollectionCard.png')}
+                // source={require('../../../assets/images/A_CollectionCard.png')}
                 style={{
-                  backgroundImage: require('../images/A_CollectionCard.png'),
+                  backgroundImage: require('../../../assets/images/A_CollectionCard1.png'),
                   color: darkBlue,
                   fontFamily: 'IT',
                   fontSize: 24,

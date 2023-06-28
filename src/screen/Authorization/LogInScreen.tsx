@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import axios from 'axios';
-import { AuthContext } from '../AuthContext';
+import { AuthContext } from '../../AuthContext';
 import styled from 'styled-components/native';
 
 const A_Input = styled.TextInput`

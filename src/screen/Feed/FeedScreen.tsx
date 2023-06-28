@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'react-native-gesture-handler';
 import styled from 'styled-components/native';
-import { Header } from '../components/Quarks/Q_FontFile';
+import { Header } from '../../components/Quarks/Q_FontFile';
 
 const white = 'hsl(203, 24%, 99%)';
 const beige = 'hsl(60, 4%, 96%)';

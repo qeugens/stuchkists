@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Button, Text } from 'react-native';
-import { AuthContext } from '../AuthContext';
+import { AuthContext } from '../../AuthContext';
 import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 const HomeScreen = ({ navigation, route }) => {

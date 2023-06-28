@@ -20,8 +20,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import Statusbar from './src/components/Atoms/A_StatusBar';
 // import { StatusBar } from 'expo-status-bar';
 import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs(); //Ignore all log notifications
+// LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+// LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const styles = StyleSheet.create({
   container: {

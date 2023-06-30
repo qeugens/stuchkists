@@ -75,9 +75,9 @@ const O_CreationScreen = styled.View`
 `;
 
 const CreateCollectionScreen = ({ navigation, route }) => {
-  const [title, onChangeTitle] = React.useState('Камни');
+  const [title, onChangeTitle] = React.useState('Пожарные гидранты');
   const [description, onChangeDescription] = React.useState(
-    'Собираю камни из разных стран, которые нельзя вывозить'
+    'когда живешь рядом с пожарной станцией, начинаешь замечать красные грибочки-гидранты'
   );
   // const [userId, setUserId] = React.useState(0);
   // const [userName, setUserName] = React.useState('');

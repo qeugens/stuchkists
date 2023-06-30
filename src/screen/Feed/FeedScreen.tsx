@@ -32,6 +32,7 @@ const Q_Image = styled.Image`
 const FlatListWrapper = styled.FlatList`
   display: flex;
   flex-wrap: wrap;
+  margin-top: 76;
 `;
 const FeedWrapper = styled.View`
   margin-left: 8;

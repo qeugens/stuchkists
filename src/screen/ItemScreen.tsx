@@ -72,11 +72,15 @@ export const ItemScreen = ({ route, navigation }) => {
     width: 374;
     height: 374;
     border-radius: 8;
-    margintop: '16';
+    margin-top: 8;
     margin: auto;
   `;
   const A_LikeButton = styled.Text`
     position: relative;
+  `;
+  const M_TextContainer = styled.View`
+    margin-top: 16;
+    margin-left: 8;
   `;
 
   useEffect(() => {
@@ -106,61 +110,67 @@ export const ItemScreen = ({ route, navigation }) => {
             key={data?.id}
             source={{ uri: 'http://localhost:3000/' + data?.image?.url }}
           />
-          <Text
-            style={{
-              color: green,
-              fontFamily: 'IT',
-              fontSize: 12,
-              lineHeight: 16,
-              width: 274,
-            }}
-          >
-            Дата находки
-          </Text>
-          <Text
-            style={{
-              color: green,
-              fontFamily: 'IT',
-              fontSize: 24,
-              lineHeight: 24,
-              width: 274,
-            }}
-          >
-            {data?.date}
-          </Text>
-          <Text
-            style={{
-              color: green,
-              fontFamily: 'IT',
-              fontSize: 12,
-              lineHeight: 12,
-              width: 274,
-            }}
-          >
-            Место находки
-          </Text>
-          <Text
-            style={{
-              color: green,
-              fontFamily: 'IT',
-              fontSize: 24,
-              lineHeight: 24,
-              width: 274,
-            }}
-          >
-            {data?.geotag}
-          </Text>
-          <Text
-            style={{
-              color: green,
-              fontFamily: 'IT',
-              fontSize: 16,
-              lineHeight: 16,
-              width: 274,
-            }}
-          >
-            {data?.note}
-          </Text>
+          <M_TextContainer>
+            <Text
+              style={{
+                color: green,
+                fontFamily: 'IT',
+                fontSize: 12,
+                lineHeight: 16,
+                width: 274,
+              }}
+            >
+              Дата находки
+            </Text>
+            <Text
+              style={{
+                color: green,
+                fontFamily: 'IT',
+                fontSize: 24,
+                lineHeight: 24,
+                width: 274,
+                marginTop: 4,
+              }}
+            >
+              {data?.date}
+            </Text>
+            <Text
+              style={{
+                color: green,
+                fontFamily: 'IT',
+                fontSize: 12,
+                lineHeight: 12,
+                width: 274,
+                marginTop: 12,
+              }}
+            >
+              Место находки
+            </Text>
+            <Text
+              style={{
+                color: green,
+                fontFamily: 'IT',
+                fontSize: 24,
+                lineHeight: 24,
+                width: 274,
+                marginTop: 4,
+              }}
+            >
+              {data?.geotag}
+            </Text>
+            <Text
+              style={{
+                color: green,
+                fontFamily: 'IT',
+                fontSize: 16,
+                lineHeight: 16,
+                width: 274,
+                marginTop: 24,
+              }}
+            >
+              {data?.note}
+            </Text>
+          </M_TextContainer>
         </>
       )}
       <A_LikeButton />

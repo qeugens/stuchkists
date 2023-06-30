@@ -55,28 +55,28 @@ const A_Button = styled.TouchableOpacity`
   padding-top: 24px;
   margin-top: 80px;
 `;
-const O_ItemsCreationForm = styled.View`
+const O_ItemsCreationForm = styled.ScrollView`
   margin: 0 auto;
 `;
-const M_CollectionList = styled.View`
-  width: 374;
-  margin-right: 8px;
-`;
-const A_CollectionCard = styled.Text`
-  width: 374;
-  height: 50;
-  border-radius: 12px;
-`;
+// const M_CollectionList = styled.View`
+//   width: 374;
+//   margin-right: 8px;
+// `;
+// const A_CollectionCard = styled.Text`
+//   width: 374;
+//   height: 50;
+//   border-radius: 12px;
+// `;
 
 const CreationScreen = ({ navigation, route, topNavigation }) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [testData, setTestData] = useState(null);
   const [scode, setSCode] = useState('');
-  const [date, onChangeDate] = useState('30.04.2023');
-  const [geotag, onChangeGeotag] = useState('Общага');
-  const [note, onChangeNote] = useState('Проверяю');
-  const [collection_id, onChangeCollectionId] = useState('Проверяю');
+  const [date, onChangeDate] = useState('29.05.2023');
+  const [geotag, onChangeGeotag] = useState('Дубай');
+  const [note, onChangeNote] = useState('Любимый штучкис');
+  const [collection_id, onChangeCollectionId] = useState('15');
   const { token, setToken } = useContext(AuthContext);
   const [userId, setUserId] = useState(null);
   const [image, setImage] = useState(null);
@@ -264,7 +264,7 @@ const CreationScreen = ({ navigation, route, topNavigation }) => {
         Никто, кроме тебя, его не увидит, поэтому можешь здесь описать даже
         самые сокровенные мысли о находке
       </Text>
-      <M_CollectionList>
+      {/* <M_CollectionList>
         <FlatList
           data={collections}
           keyExtractor={(item) => item.id.toString()}
@@ -274,7 +274,7 @@ const CreationScreen = ({ navigation, route, topNavigation }) => {
             </TouchableOpacity>
           )}
         />
-      </M_CollectionList>
+      </M_CollectionList> */}
       <A_Button>
         <Text
           onPress={() => createItem()}

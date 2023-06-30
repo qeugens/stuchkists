@@ -87,14 +87,21 @@ const O_UserBlock = styled.View`
   align-items: center;
 `;
 const A_CollectionCard = styled.Text`
+  border-radius: 12px;
+  padding-left: 16px;
+`;
+const CollectionTop = styled.View`
+  display: flex;
+  flex-direction: raw;
+  width: 374;
+  margin-left: 8px;
+`;
+const CollectionWrap = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 374px;
   height: 152px;
-  border-radius: 12px;
-  background-image: require('../../../assets/images/A_CollectionCard1.png');
-`;
-const M_CollectionList = styled.View`
-  width: 374;
-  margin-right: 8px;
 `;
 // const styles = require('../Styles');
 
@@ -242,7 +249,7 @@ const ProfileScreen = ({ navigation, route }) => {
                 width: 159,
               }}
             >
-              10
+              20
             </Text>
             <Text
               style={{
@@ -265,7 +272,7 @@ const ProfileScreen = ({ navigation, route }) => {
                 lineHeight: 32,
               }}
             >
-              4
+              2
             </Text>
             <Text
               style={{
@@ -288,19 +295,15 @@ const ProfileScreen = ({ navigation, route }) => {
         </TouchableOpacity>
       </O_UserBlock>
 
-      <M_CollectionList>
+      <CollectionTop>
         <FlatList
           data={collections}
           keyExtractor={(item: Collection) => item.id}
           renderItem={({ item }) => (
-            <View key={item.id}>
-              {/* <Image
-                source={{ uri: 'http://localhost:3000/' + item.cover.url }}
-              /> */}
+            <CollectionWrap key={item.id}>
               <A_CollectionCard
-                // source={require('../../../assets/images/A_CollectionCard.png')}
+                source={require('../../images/A_CollectionCard.png')}
                 style={{
-                  backgroundImage: require('../../../assets/images/A_CollectionCard1.png'),
                   color: darkBlue,
                   fontFamily: 'IT',
                   fontSize: 24,
@@ -310,10 +313,10 @@ const ProfileScreen = ({ navigation, route }) => {
               >
                 {item.title}
               </A_CollectionCard>
-            </View>
+            </CollectionWrap>
           )}
         />
-      </M_CollectionList>
+      </CollectionTop>
 
       <Button
         onPress={() => logOut()}

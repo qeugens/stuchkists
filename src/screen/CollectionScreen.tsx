@@ -33,15 +33,14 @@ export const ItemScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/v1/collections/`)
+      .get(`http://localhost:3000/api/v1/collections/${id}/items`)
       .then(({ data }) => {
-        // alert(JSON.stringify(data));
         setData(data);
         setLoading(false);
       })
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, []);
+  }, [id]);
 
   interface Item {
     id: any;
